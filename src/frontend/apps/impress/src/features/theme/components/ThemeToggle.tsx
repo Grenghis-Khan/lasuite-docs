@@ -1,6 +1,7 @@
 import { Button } from '@openfun/cunningham-react';
 import { useTranslation } from 'react-i18next';
 
+import { Icon } from '@/components';
 import { useCunninghamTheme } from '@/cunningham';
 
 export function ThemeToggle() {
@@ -26,7 +27,8 @@ export function ThemeToggle() {
 
   return (
     <Button
-      icon={getThemeIcon()}
+      color="primary-text"
+      icon={<Icon iconName={getThemeIcon()} />}
       onClick={toggleTheme}
       title={getThemeLabel()}
       aria-label={getThemeLabel()}
