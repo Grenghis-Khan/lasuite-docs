@@ -179,6 +179,12 @@ export const cssEditor = (readonly: boolean) => css`
 
   /* Dark theme specific styles */
   .cunningham-theme--dark & {
+    /* Override BlockNote's internal dark theme background */
+    .bn-container,
+    .ProseMirror {
+      background-color: var(--c--theme--colors--greyscale-000) !important;
+    }
+
     .bn-block-content[data-is-empty-and-focused][data-content-type='paragraph']
       .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
       color: var(--c--theme--colors--greyscale-500) !important;
@@ -205,6 +211,90 @@ export const cssEditor = (readonly: boolean) => css`
     /* Dark theme for BlockNote editor content */
     .bn-editor {
       color: var(--c--theme--colors--greyscale-text);
+      background-color: var(--c--theme--colors--greyscale-000) !important;
+    }
+
+    /* Override BlockNote's dark theme menu backgrounds */
+    .bn-suggestion-menu {
+      background-color: var(--c--theme--colors--greyscale-100) !important;
+      border: 1px solid var(--c--theme--colors--greyscale-300) !important;
+      border-radius: 8px !important;
+    }
+
+    /* Menu labels (section headers) */
+    .bn-suggestion-menu-label {
+      color: var(--c--theme--colors--greyscale-500) !important;
+      font-weight: 600 !important;
+      font-size: 12px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      padding: 8px 12px 4px 12px !important;
+    }
+
+    /* Menu items */
+    .bn-suggestion-menu-item {
+      background-color: transparent !important;
+      color: var(--c--theme--colors--greyscale-text) !important;
+      border-radius: 6px !important;
+      margin: 2px 8px !important;
+      padding: 8px 12px !important;
+      transition: background-color 0.15s ease !important;
+    }
+
+    /* Menu item hover state */
+    .bn-suggestion-menu-item:hover {
+      background-color: var(--c--theme--colors--greyscale-200) !important;
+    }
+
+    /* Menu item selected/active state */
+    .bn-suggestion-menu-item[aria-selected='true'] {
+      background-color: var(--c--theme--colors--primary-100) !important;
+    }
+
+    .bn-suggestion-menu-item[aria-selected='true']:hover {
+      background-color: var(--c--theme--colors--primary-200) !important;
+    }
+
+    /* Menu item titles */
+    .bn-mt-suggestion-menu-item-title {
+      color: var(--c--theme--colors--greyscale-text) !important;
+      font-weight: 500 !important;
+      font-size: 14px !important;
+    }
+
+    /* Menu item subtitles */
+    .bn-mt-suggestion-menu-item-subtitle {
+      color: var(--c--theme--colors--greyscale-500) !important;
+      font-size: 12px !important;
+      font-weight: 400 !important;
+    }
+
+    /* Menu item icons */
+    .bn-mt-suggestion-menu-item-section svg {
+      color: var(--c--theme--colors--greyscale-600) !important;
+    }
+
+    /* Selected menu item icons */
+    .bn-suggestion-menu-item[aria-selected='true']
+      .bn-mt-suggestion-menu-item-section
+      svg {
+      color: var(--c--theme--colors--primary-text) !important;
+    }
+
+    /* Keyboard shortcut badges */
+    .mantine-Badge-root {
+      background-color: var(--c--theme--colors--greyscale-300) !important;
+      color: var(--c--theme--colors--greyscale-600) !important;
+      border-radius: 4px !important;
+      font-size: 11px !important;
+      font-weight: 500 !important;
+      padding: 2px 6px !important;
+    }
+
+    /* Selected menu item keyboard shortcuts */
+    .bn-suggestion-menu-item[aria-selected='true'] .mantine-Badge-root {
+      background-color: var(--c--theme--colors--primary-200) !important;
+      color: var(--c--theme--colors--primary-text) !important;
     }
 
     /* Dark theme for links */
