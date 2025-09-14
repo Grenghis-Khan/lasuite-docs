@@ -6,6 +6,7 @@ import { Box, StyledLink } from '@/components/';
 import { useCunninghamTheme } from '@/cunningham';
 import { ButtonLogin } from '@/features/auth';
 import { LanguagePicker } from '@/features/language';
+import { ThemeToggle } from '@/features/theme';
 import { useResponsiveStore } from '@/stores';
 
 import { HEADER_HEIGHT } from '../conf';
@@ -33,8 +34,9 @@ export const Header = () => {
         justify-content: space-between;
         height: ${HEADER_HEIGHT}px;
         padding: 0 ${spacingsTokens['base']};
-        background-color: ${colorsTokens['greyscale-000']};
-        border-bottom: 1px solid ${colorsTokens['greyscale-200']};
+        background-color: var(--c--theme--colors--greyscale-000);
+        border-bottom: 1px solid var(--c--theme--colors--greyscale-200);
+        color: var(--c--theme--colors--greyscale-text);
       `}
       className="--docs--header"
     >
@@ -70,11 +72,13 @@ export const Header = () => {
       </StyledLink>
       {!isDesktop ? (
         <Box $direction="row" $gap={spacingsTokens['sm']}>
+          <ThemeToggle />
           <LaGaufre />
         </Box>
       ) : (
         <Box $align="center" $gap={spacingsTokens['sm']} $direction="row">
           <ButtonLogin />
+          <ThemeToggle />
           <LanguagePicker />
           <LaGaufre />
         </Box>

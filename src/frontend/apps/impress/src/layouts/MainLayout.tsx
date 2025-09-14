@@ -19,7 +19,6 @@ export function MainLayout({
   backgroundColor = 'white',
 }: PropsWithChildren<MainLayoutProps>) {
   const { isDesktop } = useResponsiveStore();
-  const { colorsTokens } = useCunninghamTheme();
   const currentBackgroundColor = !isDesktop ? 'white' : backgroundColor;
   const { t } = useTranslation();
 
@@ -43,14 +42,13 @@ export function MainLayout({
           $padding={{
             all: isDesktop ? 'base' : '0',
           }}
-          $background={
-            currentBackgroundColor === 'white'
-              ? colorsTokens['greyscale-000']
-              : colorsTokens['greyscale-050']
-          }
           $css={css`
             overflow-y: auto;
             overflow-x: clip;
+            background-color: ${currentBackgroundColor === 'white'
+              ? 'var(--c--theme--colors--greyscale-000)'
+              : 'var(--c--theme--colors--greyscale-050)'};
+            color: var(--c--theme--colors--greyscale-text);
           `}
         >
           {children}

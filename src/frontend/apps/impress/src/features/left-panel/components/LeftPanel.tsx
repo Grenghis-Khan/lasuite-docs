@@ -23,7 +23,7 @@ const MobileLeftPanelStyle = createGlobalStyle`
 export const LeftPanel = () => {
   const { isDesktop } = useResponsiveStore();
 
-  const { colorsTokens, spacingsTokens } = useCunninghamTheme();
+  const { spacingsTokens } = useCunninghamTheme();
   const { togglePanel, isPanelOpen } = useLeftPanelStore();
 
   const pathname = usePathname();
@@ -42,7 +42,9 @@ export const LeftPanel = () => {
             width: 300px;
             min-width: 300px;
             overflow: hidden;
-            border-right: 1px solid ${colorsTokens['greyscale-200']};
+            border-right: 1px solid var(--c--theme--colors--greyscale-200);
+            background-color: var(--c--theme--colors--greyscale-000);
+            color: var(--c--theme--colors--greyscale-text);
           `}
           className="--docs--left-panel-desktop"
         >

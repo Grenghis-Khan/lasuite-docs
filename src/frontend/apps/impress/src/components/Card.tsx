@@ -10,15 +10,14 @@ export const Card = ({
   $css,
   ...props
 }: PropsWithChildren<BoxType>) => {
-  const { colorsTokens } = useCunninghamTheme();
-
   return (
     <Box
       className={`--docs--card ${props.className || ''}`}
-      $background="white"
       $radius="4px"
       $css={css`
-        border: 1px solid ${colorsTokens['greyscale-200']};
+        background-color: var(--c--theme--colors--greyscale-000);
+        border: 1px solid var(--c--theme--colors--greyscale-200);
+        color: var(--c--theme--colors--greyscale-text);
         ${$css}
       `}
       {...props}

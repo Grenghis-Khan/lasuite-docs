@@ -13,6 +13,7 @@ import { useCreateBlockNote } from '@blocknote/react';
 import { HocuspocusProvider } from '@hocuspocus/provider';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { css } from 'styled-components';
 import * as Y from 'yjs';
 
 import { Box, TextErrors } from '@/components';
@@ -175,8 +176,11 @@ export const BlockNoteEditor = ({ doc, provider }: BlockNoteEditorProps) => {
   return (
     <Box
       $padding={{ top: 'md' }}
-      $background="white"
-      $css={cssEditor(readOnly)}
+      $css={css`
+        ${cssEditor(readOnly)}
+        background-color: var(--c--theme--colors--greyscale-000);
+        color: var(--c--theme--colors--greyscale-text);
+      `}
       className="--docs--editor-container"
     >
       {errorAttachment && (
@@ -227,7 +231,14 @@ export const BlockNoteEditorVersion = ({
   );
 
   return (
-    <Box $css={cssEditor(readOnly)} className="--docs--editor-container">
+    <Box
+      $css={css`
+        ${cssEditor(readOnly)}
+        background-color: var(--c--theme--colors--greyscale-000);
+        color: var(--c--theme--colors--greyscale-text);
+      `}
+      className="--docs--editor-container"
+    >
       <BlockNoteView editor={editor} editable={!readOnly} theme="light" />
     </Box>
   );
