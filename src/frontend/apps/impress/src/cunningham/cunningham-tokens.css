@@ -1064,6 +1064,118 @@
   border-color: var(--c--theme--colors--greyscale-400) !important;
 }
 
+/* Dark theme modal styling */
+.cunningham-theme--dark .c__modal {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+.cunningham-theme--dark .c__modal__backdrop {
+  background-color: rgba(8, 18, 29, 0.8) !important;
+}
+
+.cunningham-theme--dark .c__modal__scroller {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+.cunningham-theme--dark .c__modal__header {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+  border-bottom: 1px solid var(--c--theme--colors--greyscale-200) !important;
+}
+
+.cunningham-theme--dark .c__modal__body {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+.cunningham-theme--dark .c__modal__footer {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+  border-top: 1px solid var(--c--theme--colors--greyscale-200) !important;
+}
+
+/* More specific modal content targeting */
+.cunningham-theme--dark .c__modal > div {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+.cunningham-theme--dark .c__modal [role='dialog'] {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+.cunningham-theme--dark .c__modal .c__modal__content {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+/* Target React Modal classes specifically */
+.cunningham-theme--dark .ReactModal__Content {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+.cunningham-theme--dark .ReactModal__Content > div {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+/* Search modal specific styling */
+.cunningham-theme--dark .--docs--doc-search-modal {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+}
+
+.cunningham-theme--dark .--docs--doc-search-modal * {
+  color: inherit;
+}
+
+/* Force all modal content to use dark theme */
+.cunningham-theme--dark .c__modal * {
+  background-color: inherit !important;
+}
+
+.cunningham-theme--dark .c__modal .c__image-system-filter {
+  filter: brightness(0.8) contrast(1.2);
+}
+
+/* Override any white backgrounds in modal content */
+.cunningham-theme--dark .c__modal [style*='background-color: white'],
+.cunningham-theme--dark .c__modal [style*='background-color: #fff'],
+.cunningham-theme--dark .c__modal [style*='background-color: #ffffff'] {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+}
+
+/* Target any divs with white backgrounds in modals */
+.cunningham-theme--dark .c__modal div[style*='background-color: white'],
+.cunningham-theme--dark .c__modal div[style*='background-color: #fff'],
+.cunningham-theme--dark .c__modal div[style*='background-color: #ffffff'] {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+}
+
+/* Ensure all modal content inherits proper colors */
+.cunningham-theme--dark .c__modal * {
+  color: inherit;
+}
+
+.cunningham-theme--dark .c__modal input,
+.cunningham-theme--dark .c__modal textarea,
+.cunningham-theme--dark .c__modal select {
+  background-color: var(--c--theme--colors--greyscale-000) !important;
+  color: var(--c--theme--colors--greyscale-text) !important;
+  border-color: var(--c--theme--colors--greyscale-400) !important;
+}
+
+.cunningham-theme--dark .c__modal input:focus,
+.cunningham-theme--dark .c__modal textarea:focus,
+.cunningham-theme--dark .c__modal select:focus {
+  border-color: var(--c--theme--colors--primary-action) !important;
+  box-shadow: 0 0 0 2px var(--c--theme--colors--primary-action) !important;
+}
+
 .cunningham-theme--dsfr {
   --c--theme--colors--secondary-icon: #c9191e;
   --c--theme--logo--src: /assets/logo-gouv.svg;
