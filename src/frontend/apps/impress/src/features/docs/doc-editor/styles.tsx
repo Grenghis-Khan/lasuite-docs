@@ -218,27 +218,87 @@ export const cssEditor = (readonly: boolean) => css`
     .bn-suggestion-menu {
       background-color: var(--c--theme--colors--greyscale-100) !important;
       border: 1px solid var(--c--theme--colors--greyscale-300) !important;
-      border-radius: 8px !important;
+      /* border-radius: 8px !important; */
     }
 
     /* Menu labels (section headers) */
     .bn-suggestion-menu-label {
       color: var(--c--theme--colors--greyscale-500) !important;
-      font-weight: 600 !important;
+      /* font-weight: 600 !important;
       font-size: 12px !important;
       text-transform: uppercase !important;
       letter-spacing: 0.5px !important;
-      padding: 8px 12px 4px 12px !important;
+      padding: 8px 12px 4px 12px !important; */
+    }
+
+    /* BN Button */
+    .bn-button:hover {
+      background-color: var(--c--theme--colors--greyscale-200) !important;
+    }
+
+    .bn-button:active,
+    .bn-button:focus {
+      background-color: var(--c--theme--colors--primary-100) !important;
+    }
+
+    /* BN Dropdown */
+    .bn-menu-dropdown {
+      background-color: var(--c--theme--colors--greyscale-100) !important;
+    }
+
+    .bn-menu-item {
+      background-color: var(--c--theme--colors--greyscale-100) !important;
+    }
+
+    .bn-menu-item:hover {
+      background-color: var(--c--theme--colors--greyscale-200) !important;
+    }
+
+    .bn-menu-item:active,
+    .bn-menu-item:focus {
+      background-color: var(--c--theme--colors--primary-300) !important;
+    }
+
+    .mantine-Menu-label {
+      background-color: var(--c--theme--colors--greyscale-100) !important;
+    }
+    .mantine-Menu-item {
+      background-color: var(--c--theme--colors--greyscale-100) !important;
+    }
+    .mantine-Menu-item:hover {
+      background-color: var(--c--theme--colors--greyscale-200) !important;
+    }
+    .mantine-Menu-item:active,
+    .mantine-Menu-item:focus {
+      background-color: var(--c--theme--colors--primary-300) !important;
+    }
+
+    .bn-color-icon {
+      border: 1px solid var(--c--theme--colors--greyscale-200) !important;
+    }
+
+    .bn-grid-suggestion-menu {
+      background-color: var(--c--theme--colors--greyscale-100) !important;
+      border: 1px solid var(--c--theme--colors--greyscale-200) !important;
+    }
+
+    .bn-grid-suggestion-menu-item:hover {
+      background-color: var(--c--theme--colors--greyscale-300) !important;
+    }
+
+    .bn-grid-suggestion-menu-item:active,
+    .bn-grid-suggestion-menu-item:focus {
+      background-color: var(--c--theme--colors--greyscale-300) !important;
     }
 
     /* Menu items */
     .bn-suggestion-menu-item {
       background-color: transparent !important;
       color: var(--c--theme--colors--greyscale-text) !important;
-      border-radius: 6px !important;
+      /*border-radius: 6px !important;
       margin: 2px 8px !important;
       padding: 8px 12px !important;
-      transition: background-color 0.15s ease !important;
+      transition: background-color 0.15s ease !important; */
     }
 
     /* Menu item hover state */
@@ -258,20 +318,42 @@ export const cssEditor = (readonly: boolean) => css`
     /* Menu item titles */
     .bn-mt-suggestion-menu-item-title {
       color: var(--c--theme--colors--greyscale-text) !important;
-      font-weight: 500 !important;
-      font-size: 14px !important;
+      /* font-weight: 500 !important;
+      font-size: 14px !important; */
     }
 
     /* Menu item subtitles */
     .bn-mt-suggestion-menu-item-subtitle {
       color: var(--c--theme--colors--greyscale-500) !important;
-      font-size: 12px !important;
-      font-weight: 400 !important;
+      /* font-size: 12px !important;
+      font-weight: 400 !important; */
     }
 
     /* Menu item icons */
-    .bn-mt-suggestion-menu-item-section svg {
+    .bn-mt-suggestion-menu-item-section[data-position='left'] {
+      background-color: var(--c--theme--colors--greyscale-200) !important;
+    }
+    /* .bn-mt-suggestion-menu-item-section svg {
       color: var(--c--theme--colors--greyscale-600) !important;
+    } */
+
+    .bn-mt-suggestion-menu-item-section svg path {
+      fill: var(--c--theme--colors--greyscale-600) !important;
+      stroke: var(--c--theme--colors--greyscale-600) !important;
+    }
+
+    /* Override for Two Columns - reset fill to none */
+    .bn-mt-suggestion-menu-item-section
+      svg
+      path[d*='M3 3m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1zm9 -1v18'] {
+      fill: none !important;
+    }
+
+    /* Override for Three Columns - reset fill to none */
+    .bn-mt-suggestion-menu-item-section
+      svg
+      path[d*='M3 3m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1zm6 -1v18m6 -18v18'] {
+      fill: none !important;
     }
 
     /* Selected menu item icons */
@@ -285,10 +367,10 @@ export const cssEditor = (readonly: boolean) => css`
     .mantine-Badge-root {
       background-color: var(--c--theme--colors--greyscale-300) !important;
       color: var(--c--theme--colors--greyscale-600) !important;
-      border-radius: 4px !important;
+      /* border-radius: 4px !important;
       font-size: 11px !important;
       font-weight: 500 !important;
-      padding: 2px 6px !important;
+      padding: 2px 6px !important; */
     }
 
     /* Selected menu item keyboard shortcuts */
