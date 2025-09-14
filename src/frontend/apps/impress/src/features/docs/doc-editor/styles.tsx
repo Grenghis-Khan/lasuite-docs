@@ -12,12 +12,12 @@ export const cssEditor = (readonly: boolean) => css`
      */
     .bn-block-content[data-is-empty-and-focused][data-content-type='paragraph']
       .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
-      color: #767676 !important;
+      color: var(--c--theme--colors--greyscale-500) !important;
       font-weight: 400;
     }
 
     .bn-side-menu .mantine-UnstyledButton-root svg {
-      color: #767676 !important;
+      color: var(--c--theme--colors--greyscale-500) !important;
     }
 
     img.bn-visual-media[src*='-unsafe'] {
@@ -35,7 +35,7 @@ export const cssEditor = (readonly: boolean) => css`
       left: -1px;
     }
     .collaboration-cursor-custom__label {
-      color: #0d0d0d;
+      color: var(--c--theme--colors--greyscale-text);
       font-size: 12px;
       font-weight: 600;
       -webkit-user-select: none;
@@ -136,7 +136,8 @@ export const cssEditor = (readonly: boolean) => css`
   }
 
   & .bn-inline-content code {
-    background-color: gainsboro;
+    background-color: var(--c--theme--colors--greyscale-200);
+    color: var(--c--theme--colors--greyscale-800);
     padding: 2px;
     border-radius: 4px;
   }
@@ -173,6 +174,72 @@ export const cssEditor = (readonly: boolean) => css`
     .bn-block-content[data-is-empty-and-focused][data-content-type='paragraph']
       .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
       font-size: 14px;
+    }
+  }
+
+  /* Dark theme specific styles */
+  .cunningham-theme--dark & {
+    .bn-block-content[data-is-empty-and-focused][data-content-type='paragraph']
+      .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
+      color: var(--c--theme--colors--greyscale-500) !important;
+    }
+
+    .bn-side-menu .mantine-UnstyledButton-root svg {
+      color: var(--c--theme--colors--greyscale-500) !important;
+    }
+
+    .collaboration-cursor-custom__label {
+      color: var(--c--theme--colors--greyscale-text);
+    }
+
+    .collaboration-cursor-custom__base[data-active]
+      .collaboration-cursor-custom__label {
+      box-shadow: inset -2px 2px 6px rgba(255, 255, 255, 0.1);
+    }
+
+    .bn-inline-content code {
+      background-color: var(--c--theme--colors--greyscale-200);
+      color: var(--c--theme--colors--greyscale-800);
+    }
+
+    /* Dark theme for BlockNote editor content */
+    .bn-editor {
+      color: var(--c--theme--colors--greyscale-text);
+    }
+
+    /* Dark theme for links */
+    a {
+      color: var(--c--theme--colors--primary-text);
+    }
+
+    a:hover {
+      color: var(--c--theme--colors--primary-focus);
+    }
+
+    /* Dark theme for blockquotes */
+    blockquote {
+      border-left-color: var(--c--theme--colors--greyscale-400);
+      color: var(--c--theme--colors--greyscale-600);
+    }
+
+    /* Dark theme for headings */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: var(--c--theme--colors--greyscale-text);
+    }
+
+    /* Dark theme for paragraphs and text */
+    p,
+    span,
+    div,
+    td,
+    th,
+    li {
+      color: var(--c--theme--colors--greyscale-text);
     }
   }
 `;

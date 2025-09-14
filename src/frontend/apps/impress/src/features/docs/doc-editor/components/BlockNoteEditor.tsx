@@ -17,6 +17,7 @@ import { css } from 'styled-components';
 import * as Y from 'yjs';
 
 import { Box, TextErrors } from '@/components';
+import { useCunninghamTheme } from '@/cunningham';
 import { Doc, useIsCollaborativeEditable } from '@/docs/doc-management';
 import { useAuth } from '@/features/auth';
 
@@ -76,6 +77,7 @@ export const BlockNoteEditor = ({ doc, provider }: BlockNoteEditorProps) => {
   const { user } = useAuth();
   const { setEditor } = useEditorStore();
   const { t } = useTranslation();
+  const { theme } = useCunninghamTheme();
 
   const { isEditable, isLoading } = useIsCollaborativeEditable(doc);
   const isConnectedToCollabServer = provider.isSynced;
@@ -198,7 +200,7 @@ export const BlockNoteEditor = ({ doc, provider }: BlockNoteEditorProps) => {
         formattingToolbar={false}
         slashMenu={false}
         editable={!readOnly}
-        theme="light"
+        theme={theme === 'dark' ? 'dark' : 'light'}
       >
         <BlockNoteSuggestionMenu />
         <BlockNoteToolbar />
@@ -214,6 +216,7 @@ interface BlockNoteEditorVersionProps {
 export const BlockNoteEditorVersion = ({
   initialContent,
 }: BlockNoteEditorVersionProps) => {
+  const { theme } = useCunninghamTheme();
   const readOnly = true;
   const editor = useCreateBlockNote(
     {
@@ -239,7 +242,11 @@ export const BlockNoteEditorVersion = ({
       `}
       className="--docs--editor-container"
     >
-      <BlockNoteView editor={editor} editable={!readOnly} theme="light" />
+      <BlockNoteView
+        editor={editor}
+        editable={!readOnly}
+        theme={theme === 'dark' ? 'dark' : 'light'}
+      />
     </Box>
   );
 };
