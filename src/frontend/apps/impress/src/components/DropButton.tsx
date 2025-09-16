@@ -16,7 +16,7 @@ const StyledPopover = styled(Popover)`
   background-color: white;
   border-radius: 4px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-  border: 1px solid #dddddd;
+  /* border: 1px solid #dddddd; */
   transition: opacity 0.2s ease-in-out;
 `;
 

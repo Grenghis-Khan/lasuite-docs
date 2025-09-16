@@ -133,6 +133,16 @@ export const DropdownMenu = ({
         $minWidth={`${blockButtonRef.current?.clientWidth}px`}
         role="menu"
         aria-label={label}
+        $css={css`
+          .cunningham-theme--dark & {
+            background-color: var(--c--theme--colors--greyscale-000) !important;
+            /* border: 1px solid var(--c--theme--colors--greyscale-300) !important; */
+            border-radius: 4px !important;
+            box-shadow:
+              0 4px 6px -1px rgba(0, 0, 0, 0.3),
+              0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;
+          }
+        `}
       >
         {topMessage && (
           <Text
@@ -143,6 +153,13 @@ export const DropdownMenu = ({
             $padding={{ vertical: 'xs', horizontal: 'base' }}
             $css={css`
               white-space: pre-line;
+
+              .cunningham-theme--dark & {
+                color: var(--c--theme--colors--greyscale-text) !important;
+                background-color: var(
+                  --c--theme--colors--greyscale-000
+                ) !important;
+              }
             `}
           >
             {topMessage}
@@ -193,7 +210,7 @@ export const DropdownMenu = ({
                     border-bottom-left-radius: 4px;
                     border-bottom-right-radius: 4px;
                   `}
-                font-size: var(--c--theme--font--sizes--sm);
+                  font-size: var(--c--theme--font--sizes--sm);
                   color: var(--c--theme--colors--greyscale-1000);
                   font-weight: 500;
                   cursor: ${isDisabled ? 'not-allowed' : 'pointer'};
@@ -214,6 +231,35 @@ export const DropdownMenu = ({
                     outline-offset: -2px;
                     background-color: var(--c--theme--colors--greyscale-050);
                   `}
+
+                  /* Dark mode styling */
+                  .cunningham-theme--dark & {
+                    background-color: var(
+                      --c--theme--colors--greyscale-000
+                    ) !important;
+                    color: var(--c--theme--colors--greyscale-text) !important;
+                    /* border: 1px solid var(--c--theme--colors--greyscale-300) !important; */
+
+                    &:hover {
+                      background-color: var(
+                        --c--theme--colors--greyscale-200
+                      ) !important;
+                    }
+
+                    &:focus-visible {
+                      outline: 2px solid var(--c--theme--colors--primary-400) !important;
+                      background-color: var(
+                        --c--theme--colors--greyscale-200
+                      ) !important;
+                    }
+
+                    ${isFocused &&
+                    css`
+                      background-color: var(
+                        --c--theme--colors--greyscale-200
+                      ) !important;
+                    `}
+                  }
                 `}
               >
                 <Box
@@ -230,7 +276,16 @@ export const DropdownMenu = ({
                       aria-hidden="true"
                     />
                   )}
-                  <Text $variation={isDisabled ? '400' : '1000'}>
+                  <Text
+                    $variation={isDisabled ? '400' : '1000'}
+                    $css={css`
+                      .cunningham-theme--dark & {
+                        color: var(
+                          --c--theme--colors--greyscale-text
+                        ) !important;
+                      }
+                    `}
+                  >
                     {option.label}
                   </Text>
                 </Box>

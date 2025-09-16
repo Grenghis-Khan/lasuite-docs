@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AppProvider } from '@/core/';
 import { useCunninghamTheme, useThemeEffect } from '@/cunningham';
+import '@/features/docs/doc-editor/blocknote-theme.css';
 import { useOffline, useSWRegister } from '@/features/service-worker/';
 import '@/i18n/initI18n';
 import { NextPageWithLayout } from '@/types/next';

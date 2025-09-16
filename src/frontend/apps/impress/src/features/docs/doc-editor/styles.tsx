@@ -1,5 +1,58 @@
 import { css } from 'styled-components';
 
+/**
+ * Global CSS for document icons in dark mode
+ *
+ * WHY JAVASCRIPT INJECTION INSTEAD OF STYLED-COMPONENTS?
+ *
+ * This CSS is injected directly into the DOM via JavaScript rather than using
+ * styled-components because:
+ *
+ * 1. CSS SPECIFICITY ISSUES: The document icons are rendered by a third-party
+ *    component (Box from a design system) with generated class names that have
+ *    very high specificity. Styled-components CSS was being overridden.
+ *
+ * 2. CSS VARIABLE RESOLUTION: The design system's CSS variables for greyscale
+ *    colors were not resolving correctly in dark mode (all returning the same
+ *    light color), so we needed to use the working primary color variables.
+ *
+ * 3. HOT MODULE RELOAD ISSUES: Changes to styled-components CSS in this file
+ *    were not being picked up by Next.js HMR, requiring full page refreshes.
+ *
+ * 4. IMMEDIATE APPLICATION: Direct DOM injection ensures the styles are applied
+ *    immediately without waiting for CSS compilation or build processes.
+ *
+ * 5. BYPASS BUILD COMPLEXITY: Avoids potential issues with CSS-in-JS compilation,
+ *    styled-components theming, or build tool configuration.
+ *
+ * The injected styles target the specific component class (.Box-sc-34780e96-0.bIxhtp)
+ * and use the app's primary color variables for consistent theming.
+ */
+const globalDocumentIconStyles = `
+  html.cunningham-theme--dark .Box-sc-34780e96-0.bIxhtp svg {
+    color: var(--c--theme--colors--primary-100) !important;
+  }
+  
+  html.cunningham-theme--dark .Box-sc-34780e96-0.bIxhtp svg path[fill='currentColor'] {
+    fill: var(--c--theme--colors--primary-200) !important;
+  }
+  
+  html.cunningham-theme--dark .Box-sc-34780e96-0.bIxhtp svg path[fill='white'] {
+    fill: var(--c--theme--colors--primary-100) !important;
+  }
+  
+  html.cunningham-theme--dark .Box-sc-34780e96-0.bIxhtp svg rect[stroke='currentColor'] {
+    stroke: var(--c--theme--colors--primary-200) !important;
+  }
+`;
+
+// Inject the global styles
+if (typeof document !== 'undefined') {
+  const styleElement = document.createElement('style');
+  styleElement.textContent = globalDocumentIconStyles;
+  document.head.appendChild(styleElement);
+}
+
 export const cssEditor = (readonly: boolean) => css`
   &,
   & > .bn-container,
@@ -7,62 +60,18 @@ export const cssEditor = (readonly: boolean) => css`
     height: 100%;
     padding-bottom: 2rem;
 
-    /**
-     * WCAG Accessibility contrast fixes for BlockNote editor
-     */
-    .bn-block-content[data-is-empty-and-focused][data-content-type='paragraph']
-      .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
-      color: var(--c--theme--colors--greyscale-500) !important;
-      font-weight: 400;
-    }
+    /* BlockNote-specific styles are now handled by CSS variables in blocknote-theme.css */
 
-    .bn-side-menu .mantine-UnstyledButton-root svg {
-      color: var(--c--theme--colors--greyscale-500) !important;
-    }
-
-    img.bn-visual-media[src*='-unsafe'] {
+    /* img.bn-visual-media[src*='-unsafe'] {
       pointer-events: none;
-    }
+    } */
 
-    .collaboration-cursor-custom__base {
-      position: relative;
-    }
-    .collaboration-cursor-custom__caret {
-      position: absolute;
-      height: 100%;
-      width: 2px;
-      bottom: 4%;
-      left: -1px;
-    }
-    .collaboration-cursor-custom__label {
-      color: var(--c--theme--colors--greyscale-text);
-      font-size: 12px;
-      font-weight: 600;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-      position: absolute;
-      top: -17px;
-      left: 0px;
-      padding: 0px 6px;
-      border-radius: 0px;
-      white-space: nowrap;
-      transition: clip-path 0.3s ease-in-out;
-      border-radius: 4px 4px 4px 0;
-      box-shadow: inset -2px 2px 6px #ffffff00;
-      clip-path: polygon(0 85%, 4% 85%, 4% 100%, 0% 100%);
-    }
-    .collaboration-cursor-custom__base[data-active]
-      .collaboration-cursor-custom__label {
-      pointer-events: none;
-      box-shadow: inset -2px 2px 6px #ffffff88;
-      clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-    }
+    /* Collaboration cursor styles are now handled by CSS variables in blocknote-theme.css */
 
     /**
      * Side menu
      */
-    .bn-side-menu[data-block-type='heading'][data-level='1'] {
+    /*.bn-side-menu[data-block-type='heading'][data-level='1'] {
       height: 50px;
     }
     .bn-side-menu[data-block-type='heading'][data-level='2'] {
@@ -73,57 +82,19 @@ export const cssEditor = (readonly: boolean) => css`
     }
     .bn-side-menu[data-block-type='divider'] {
       height: 38px;
-    }
+    } */
 
-    /**
-     * Callout, Paragraph and Heading blocks
-     */
-    .bn-block {
-      border-radius: var(--c--theme--spacings--3xs);
-    }
-
-    .bn-block-outer {
-      border-radius: var(--c--theme--spacings--3xs);
-    }
-
-    .bn-block[data-background-color] > .bn-block-content {
-      padding: var(--c--theme--spacings--3xs) var(--c--theme--spacings--3xs);
-      border-radius: var(--c--theme--spacings--3xs);
-    }
-
-    h1 {
-      font-size: 1.875rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-    }
-    h3 {
-      font-size: 1.25rem;
-    }
-    a {
-      color: var(--c--theme--colors--greyscale-600);
-      cursor: pointer;
-    }
-    .bn-block-group
+    /* Block styling, typography, and links are now handled by CSS variables in blocknote-theme.css */
+    /* .bn-block-group
       .bn-block-group
       .bn-block-outer:not([data-prev-depth-changed]):before {
       border-left: none;
-    }
+    } */
   }
 
-  & .bn-editor {
-    color: var(--c--theme--colors--greyscale-700);
+  /* Editor colors and blockquotes are now handled by CSS variables in blocknote-theme.css */
 
-    /**
-    * Quotes
-    */
-    blockquote {
-      border-left: 4px solid var(--c--theme--colors--greyscale-300);
-      font-style: italic;
-    }
-  }
-
-  & .bn-block-outer:not(:first-child) {
+  /* & .bn-block-outer:not(:first-child) {
     &:has(h1) {
       margin-top: 32px;
     }
@@ -133,14 +104,9 @@ export const cssEditor = (readonly: boolean) => css`
     &:has(h3) {
       margin-top: 16px;
     }
-  }
+  } */
 
-  & .bn-inline-content code {
-    background-color: var(--c--theme--colors--greyscale-200);
-    color: var(--c--theme--colors--greyscale-800);
-    padding: 2px;
-    border-radius: 4px;
-  }
+  /* Code styling is now handled by CSS variables in blocknote-theme.css */
 
   @media screen and (width <= 768px) {
     & .bn-editor {
@@ -177,23 +143,9 @@ export const cssEditor = (readonly: boolean) => css`
     }
   }
 
-  /* Dark theme specific styles */
+  /* Dark theme specific styles - now handled by BlockNote CSS variables */
   .cunningham-theme--dark & {
-    /* Override BlockNote's internal dark theme background */
-    .bn-container,
-    .ProseMirror {
-      background-color: var(--c--theme--colors--greyscale-000) !important;
-    }
-
-    .bn-block-content[data-is-empty-and-focused][data-content-type='paragraph']
-      .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
-      color: var(--c--theme--colors--greyscale-500) !important;
-    }
-
-    .bn-side-menu .mantine-UnstyledButton-root svg {
-      color: var(--c--theme--colors--greyscale-500) !important;
-    }
-
+    /* Keep only essential custom styles that aren't handled by BlockNote theming */
     .collaboration-cursor-custom__label {
       color: var(--c--theme--colors--greyscale-text);
     }
@@ -201,217 +153,6 @@ export const cssEditor = (readonly: boolean) => css`
     .collaboration-cursor-custom__base[data-active]
       .collaboration-cursor-custom__label {
       box-shadow: inset -2px 2px 6px rgba(255, 255, 255, 0.1);
-    }
-
-    .bn-inline-content code {
-      background-color: var(--c--theme--colors--greyscale-200);
-      color: var(--c--theme--colors--greyscale-800);
-    }
-
-    /* Dark theme for BlockNote editor content */
-    .bn-editor {
-      color: var(--c--theme--colors--greyscale-text);
-      background-color: var(--c--theme--colors--greyscale-000) !important;
-    }
-
-    /* Override BlockNote's dark theme menu backgrounds */
-    .bn-suggestion-menu {
-      background-color: var(--c--theme--colors--greyscale-100) !important;
-      border: 1px solid var(--c--theme--colors--greyscale-300) !important;
-      /* border-radius: 8px !important; */
-    }
-
-    /* Menu labels (section headers) */
-    .bn-suggestion-menu-label {
-      color: var(--c--theme--colors--greyscale-500) !important;
-      /* font-weight: 600 !important;
-      font-size: 12px !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.5px !important;
-      padding: 8px 12px 4px 12px !important; */
-    }
-
-    /* BN Button */
-    .bn-button:hover {
-      background-color: var(--c--theme--colors--greyscale-200) !important;
-    }
-
-    .bn-button:active,
-    .bn-button:focus {
-      background-color: var(--c--theme--colors--primary-100) !important;
-    }
-
-    /* BN Dropdown */
-    .bn-menu-dropdown {
-      background-color: var(--c--theme--colors--greyscale-100) !important;
-    }
-
-    .bn-menu-item {
-      background-color: var(--c--theme--colors--greyscale-100) !important;
-    }
-
-    .bn-menu-item:hover {
-      background-color: var(--c--theme--colors--greyscale-200) !important;
-    }
-
-    .bn-menu-item:active,
-    .bn-menu-item:focus {
-      background-color: var(--c--theme--colors--primary-300) !important;
-    }
-
-    .mantine-Menu-label {
-      background-color: var(--c--theme--colors--greyscale-100) !important;
-    }
-    .mantine-Menu-item {
-      background-color: var(--c--theme--colors--greyscale-100) !important;
-    }
-    .mantine-Menu-item:hover {
-      background-color: var(--c--theme--colors--greyscale-200) !important;
-    }
-    .mantine-Menu-item:active,
-    .mantine-Menu-item:focus {
-      background-color: var(--c--theme--colors--primary-300) !important;
-    }
-
-    .bn-color-icon {
-      border: 1px solid var(--c--theme--colors--greyscale-200) !important;
-    }
-
-    .bn-grid-suggestion-menu {
-      background-color: var(--c--theme--colors--greyscale-100) !important;
-      border: 1px solid var(--c--theme--colors--greyscale-200) !important;
-    }
-
-    .bn-grid-suggestion-menu-item:hover {
-      background-color: var(--c--theme--colors--greyscale-300) !important;
-    }
-
-    .bn-grid-suggestion-menu-item:active,
-    .bn-grid-suggestion-menu-item:focus {
-      background-color: var(--c--theme--colors--greyscale-300) !important;
-    }
-
-    /* Menu items */
-    .bn-suggestion-menu-item {
-      background-color: transparent !important;
-      color: var(--c--theme--colors--greyscale-text) !important;
-      /*border-radius: 6px !important;
-      margin: 2px 8px !important;
-      padding: 8px 12px !important;
-      transition: background-color 0.15s ease !important; */
-    }
-
-    /* Menu item hover state */
-    .bn-suggestion-menu-item:hover {
-      background-color: var(--c--theme--colors--greyscale-200) !important;
-    }
-
-    /* Menu item selected/active state */
-    .bn-suggestion-menu-item[aria-selected='true'] {
-      background-color: var(--c--theme--colors--primary-100) !important;
-    }
-
-    .bn-suggestion-menu-item[aria-selected='true']:hover {
-      background-color: var(--c--theme--colors--primary-200) !important;
-    }
-
-    /* Menu item titles */
-    .bn-mt-suggestion-menu-item-title {
-      color: var(--c--theme--colors--greyscale-text) !important;
-      /* font-weight: 500 !important;
-      font-size: 14px !important; */
-    }
-
-    /* Menu item subtitles */
-    .bn-mt-suggestion-menu-item-subtitle {
-      color: var(--c--theme--colors--greyscale-500) !important;
-      /* font-size: 12px !important;
-      font-weight: 400 !important; */
-    }
-
-    /* Menu item icons */
-    .bn-mt-suggestion-menu-item-section[data-position='left'] {
-      background-color: var(--c--theme--colors--greyscale-200) !important;
-    }
-    /* .bn-mt-suggestion-menu-item-section svg {
-      color: var(--c--theme--colors--greyscale-600) !important;
-    } */
-
-    .bn-mt-suggestion-menu-item-section svg path {
-      fill: var(--c--theme--colors--greyscale-600) !important;
-      stroke: var(--c--theme--colors--greyscale-600) !important;
-    }
-
-    /* Override for Two Columns - reset fill to none */
-    .bn-mt-suggestion-menu-item-section
-      svg
-      path[d*='M3 3m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1zm9 -1v18'] {
-      fill: none !important;
-    }
-
-    /* Override for Three Columns - reset fill to none */
-    .bn-mt-suggestion-menu-item-section
-      svg
-      path[d*='M3 3m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v16a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1zm6 -1v18m6 -18v18'] {
-      fill: none !important;
-    }
-
-    /* Selected menu item icons */
-    .bn-suggestion-menu-item[aria-selected='true']
-      .bn-mt-suggestion-menu-item-section
-      svg {
-      color: var(--c--theme--colors--primary-text) !important;
-    }
-
-    /* Keyboard shortcut badges */
-    .mantine-Badge-root {
-      background-color: var(--c--theme--colors--greyscale-300) !important;
-      color: var(--c--theme--colors--greyscale-600) !important;
-      /* border-radius: 4px !important;
-      font-size: 11px !important;
-      font-weight: 500 !important;
-      padding: 2px 6px !important; */
-    }
-
-    /* Selected menu item keyboard shortcuts */
-    .bn-suggestion-menu-item[aria-selected='true'] .mantine-Badge-root {
-      background-color: var(--c--theme--colors--primary-200) !important;
-      color: var(--c--theme--colors--primary-text) !important;
-    }
-
-    /* Dark theme for links */
-    a {
-      color: var(--c--theme--colors--primary-text);
-    }
-
-    a:hover {
-      color: var(--c--theme--colors--primary-focus);
-    }
-
-    /* Dark theme for blockquotes */
-    blockquote {
-      border-left-color: var(--c--theme--colors--greyscale-400);
-      color: var(--c--theme--colors--greyscale-600);
-    }
-
-    /* Dark theme for headings */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: var(--c--theme--colors--greyscale-text);
-    }
-
-    /* Dark theme for paragraphs and text */
-    p,
-    span,
-    div,
-    td,
-    th,
-    li {
-      color: var(--c--theme--colors--greyscale-text);
     }
   }
 `;

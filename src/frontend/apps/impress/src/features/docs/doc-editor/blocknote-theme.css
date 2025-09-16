@@ -1,0 +1,174 @@
+/**
+ * BlockNote Theme Configuration using CSS Variables
+ * 
+ * This file follows BlockNote's official theming approach by using their CSS variables
+ * instead of custom CSS injection and !important overrides.
+ * 
+ * Reference: https://www.blocknotejs.org/docs/react/styling-theming/themes
+ */
+
+/* CSS Isolation: Prevent Cunningham Dark theme from affecting BlockNote content */
+/* This is now handled in cunningham-tokens.css */
+
+/* Specific selectors to ensure CSS variables are applied */
+.bn-container[data-color-scheme='light'],
+.bn-container[data-color-scheme='light'] * {
+  /* Editor colors */
+  --bn-colors-editor-text: var(--c--theme--colors--greyscale-1000);
+  --bn-colors-editor-background: var(--c--theme--colors--greyscale-000);
+
+  /* Menu colors */
+  --bn-colors-menu-text: var(--c--theme--colors--greyscale-1000);
+  --bn-colors-menu-background: var(--c--theme--colors--greyscale-100);
+
+  /* Tooltip colors */
+  --bn-colors-tooltip-text: var(--c--theme--colors--greyscale-1000);
+  --bn-colors-tooltip-background: var(--c--theme--colors--greyscale-200);
+
+  /* Hovered state colors */
+  --bn-colors-hovered-text: var(--c--theme--colors--greyscale-1000);
+  --bn-colors-hovered-background: var(--c--theme--colors--greyscale-200);
+
+  /* Selected state colors */
+  --bn-colors-selected-text: var(--c--theme--colors--primary-text);
+  --bn-colors-selected-background: var(--c--theme--colors--primary-500);
+
+  /* Disabled state colors */
+  --bn-colors-disabled-text: var(--c--theme--colors--greyscale-400);
+  --bn-colors-disabled-background: var(--c--theme--colors--greyscale-200);
+
+  /* UI element colors */
+  --bn-colors-shadow: var(--c--theme--colors--greyscale-300);
+  --bn-colors-border: var(--c--theme--colors--greyscale-300);
+  --bn-colors-side-menu: var(--c--theme--colors--greyscale-500);
+
+  /* Highlight colors - using BlockNote default colors with !important */
+  /* --bn-colors-highlights-gray-text: #9b9a97 !important;
+  --bn-colors-highlights-gray-background: #ebeced !important;
+  --bn-colors-highlights-brown-text: #64473a !important;
+  --bn-colors-highlights-brown-background: #e9e5e3 !important;
+  --bn-colors-highlights-red-text: #e03e3e !important;
+  --bn-colors-highlights-red-background: #fbe4e4 !important;
+  --bn-colors-highlights-orange-text: #d9730d !important;
+  --bn-colors-highlights-orange-background: #f6e9d9 !important;
+  --bn-colors-highlights-yellow-text: #dfab01 !important;
+  --bn-colors-highlights-yellow-background: #fbf3db !important;
+  --bn-colors-highlights-green-text: #4d6461 !important;
+  --bn-colors-highlights-green-background: #ddedea !important;
+  --bn-colors-highlights-blue-text: #0b6e99 !important;
+  --bn-colors-highlights-blue-background: #ddebf1 !important;
+  --bn-colors-highlights-purple-text: #6940a5 !important;
+  --bn-colors-highlights-purple-background: #eae4f2 !important;
+  --bn-colors-highlights-pink-text: #ad1a72 !important;
+  --bn-colors-highlights-pink-background: #f4dfeb !important; */
+  /* Typography and spacing */
+  --bn-font-family: var(--c--theme--font--families--sans-serif);
+  --bn-border-radius: var(--c--theme--spacings--3xs);
+}
+
+/* Dark theme configuration */
+.bn-container[data-color-scheme='dark'],
+.bn-container[data-color-scheme='dark'] * {
+  /* Editor colors */
+  --bn-colors-editor-text: var(--c--theme--colors--greyscale-text);
+  --bn-colors-editor-background: var(--c--theme--colors--greyscale-000);
+
+  /* Menu colors */
+  --bn-colors-menu-text: var(--c--theme--colors--greyscale-text);
+  --bn-colors-menu-background: var(--c--theme--colors--greyscale-100);
+
+  /* Tooltip colors */
+  --bn-colors-tooltip-text: var(--c--theme--colors--greyscale-text);
+  --bn-colors-tooltip-background: var(--c--theme--colors--greyscale-200);
+
+  /* Hovered state colors */
+  --bn-colors-hovered-text: var(--c--theme--colors--greyscale-text);
+  --bn-colors-hovered-background: var(--c--theme--colors--greyscale-200);
+
+  /* Selected state colors */
+  --bn-colors-selected-text: var(--c--theme--colors--primary-text);
+  --bn-colors-selected-background: var(--c--theme--colors--primary-500);
+
+  /* Disabled state colors */
+  --bn-colors-disabled-text: var(--c--theme--colors--greyscale-400);
+  --bn-colors-disabled-background: var(--c--theme--colors--greyscale-200);
+
+  /* UI element colors */
+  --bn-colors-shadow: var(--c--theme--colors--greyscale-300);
+  --bn-colors-border: var(--c--theme--colors--greyscale-300);
+  --bn-colors-side-menu: var(--c--theme--colors--greyscale-500);
+
+  /* Highlight colors - adjusted for dark mode with better contrast */
+  /* --bn-colors-highlights-gray-text: #e5e5e5 !important;
+  --bn-colors-highlights-gray-background: #4a4a4a !important;
+  --bn-colors-highlights-brown-text: #d4c4a8 !important;
+  --bn-colors-highlights-brown-background: #5c4a3a !important;
+  --bn-colors-highlights-red-text: #ff6b6b !important;
+  --bn-colors-highlights-red-background: #4a2a2a !important;
+  --bn-colors-highlights-orange-text: #ffb366 !important;
+  --bn-colors-highlights-orange-background: #4a3a2a !important;
+  --bn-colors-highlights-yellow-text: #ffd93d !important;
+  --bn-colors-highlights-yellow-background: #4a4a2a !important;
+  --bn-colors-highlights-green-text: #6bcf7f !important;
+  --bn-colors-highlights-green-background: #2a4a2a !important;
+  --bn-colors-highlights-blue-text: #6bb6ff !important;
+  --bn-colors-highlights-blue-background: #2a3a4a !important;
+  --bn-colors-highlights-purple-text: #b366ff !important;
+  --bn-colors-highlights-purple-background: #3a2a4a !important;
+  --bn-colors-highlights-pink-text: #ff6bb6 !important;
+  --bn-colors-highlights-pink-background: #4a2a3a !important; */
+
+  /* Typography and spacing */
+  --bn-font-family: var(--c--theme--font--families--sans-serif);
+  --bn-border-radius: var(--c--theme--spacings--3xs);
+}
+
+/* Collaboration cursor styling */
+.collaboration-cursor-custom__base {
+  position: relative;
+}
+.collaboration-cursor-custom__caret {
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  bottom: 4%;
+  left: -1px;
+}
+.bn-container .collaboration-cursor-custom__label {
+  color: var(--c--theme--colors--greyscale-text);
+  font-size: 12px;
+  font-weight: 600;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: absolute;
+  top: -17px;
+  left: 0px;
+  padding: 0px 6px;
+  border-radius: 4px 4px 4px 0;
+  white-space: nowrap;
+  transition:
+    clip-path 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+  box-shadow: inset -2px 2px 6px #ffffff00;
+  clip-path: polygon(0 85%, 4% 85%, 4% 100%, 0% 100%);
+}
+
+.bn-container
+  .collaboration-cursor-custom__base[data-active]
+  .collaboration-cursor-custom__label {
+  pointer-events: none;
+  box-shadow: inset -2px 2px 6px rgba(255, 255, 255, 0.1);
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+}
+
+/* Dark mode specific collaboration cursor */
+.bn-container[data-color-scheme='dark'] .collaboration-cursor-custom__label {
+  color: var(--c--theme--colors--greyscale-100);
+}
+
+.bn-container[data-color-scheme='dark']
+  .collaboration-cursor-custom__base[data-active]
+  .collaboration-cursor-custom__label {
+  color: var(--c--theme--colors--greyscale-100);
+}

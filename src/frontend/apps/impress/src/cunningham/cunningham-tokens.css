@@ -935,9 +935,9 @@
   color: var(--c--theme--colors--greyscale-text);
 }
 
-.cunningham-theme--dark * {
+/* .cunningham-theme--dark * {
   border-color: var(--c--theme--colors--greyscale-400);
-}
+} */
 
 .cunningham-theme--dark h1,
 .cunningham-theme--dark h2,
@@ -948,12 +948,13 @@
   color: var(--c--theme--colors--greyscale-text);
 }
 
-.cunningham-theme--dark p,
-.cunningham-theme--dark span,
-.cunningham-theme--dark div,
-.cunningham-theme--dark td,
-.cunningham-theme--dark th,
-.cunningham-theme--dark li {
+/* Dark theme text color, excluding BlockNote which has its own color scheme in blocknote-theme.css */
+.cunningham-theme--dark p:not(.bn-container p):not(.bn-container *),
+.cunningham-theme--dark span:not(.bn-container span):not(.bn-container *),
+.cunningham-theme--dark div:not(.bn-container):not(.bn-container *),
+.cunningham-theme--dark td:not(.bn-container td):not(.bn-container *),
+.cunningham-theme--dark th:not(.bn-container th):not(.bn-container *),
+.cunningham-theme--dark li:not(.bn-container li):not(.bn-container *) {
   color: var(--c--theme--colors--greyscale-text);
 }
 
@@ -965,8 +966,8 @@
   color: var(--c--theme--colors--primary-focus);
 }
 
-/* Ensure all text elements inherit the proper color */
-.cunningham-theme--dark * {
+/* Ensure all text elements inherit the proper color, excluding BlockNote which has its own color scheme */
+.cunningham-theme--dark *:not(.bn-container):not(.bn-container *) {
   color: inherit;
 }
 
@@ -980,24 +981,26 @@
   color: var(--c--theme--colors--greyscale-text) !important;
 }
 
-/* Ensure all text in specific components changes color */
-.cunningham-theme--dark .--docs--card *,
-.cunningham-theme--dark .--docs--editor-container *,
-.cunningham-theme--dark main *,
-.cunningham-theme--dark .grid *,
-.cunningham-theme--dark .row *,
-.cunningham-theme--dark .gridcell * {
+/* Ensure all text in specific components changes color, excluding BlockNote */
+.cunningham-theme--dark .--docs--card *:not(.bn-container):not(.bn-container *),
+.cunningham-theme--dark
+  .--docs--editor-container
+  *:not(.bn-container):not(.bn-container *),
+.cunningham-theme--dark main *:not(.bn-container):not(.bn-container *),
+.cunningham-theme--dark .grid *:not(.bn-container):not(.bn-container *),
+.cunningham-theme--dark .row *:not(.bn-container):not(.bn-container *),
+.cunningham-theme--dark .gridcell *:not(.bn-container):not(.bn-container *) {
   color: inherit;
 }
 
-/* Override any specific text color issues */
-.cunningham-theme--dark span,
-.cunningham-theme--dark div,
-.cunningham-theme--dark p,
-.cunningham-theme--dark td,
-.cunningham-theme--dark th,
-.cunningham-theme--dark li,
-.cunningham-theme--dark label {
+/* Override any specific text color issues, excluding BlockNote */
+.cunningham-theme--dark span:not(.bn-container span):not(.bn-container *),
+.cunningham-theme--dark div:not(.bn-container):not(.bn-container *),
+.cunningham-theme--dark p:not(.bn-container p):not(.bn-container *),
+.cunningham-theme--dark td:not(.bn-container td):not(.bn-container *),
+.cunningham-theme--dark th:not(.bn-container th):not(.bn-container *),
+.cunningham-theme--dark li:not(.bn-container li):not(.bn-container *),
+.cunningham-theme--dark label:not(.bn-container label):not(.bn-container *) {
   color: var(--c--theme--colors--greyscale-text) !important;
 }
 
